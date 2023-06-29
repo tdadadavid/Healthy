@@ -26,6 +26,9 @@ dependencies:
   jsonwebtoken:
     specifier: ^9.0.0
     version: 9.0.0
+  moment:
+    specifier: ^2.29.4
+    version: 2.29.4
   morgan:
     specifier: ^1.10.0
     version: 1.10.0

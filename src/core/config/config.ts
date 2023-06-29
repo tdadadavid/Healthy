@@ -10,12 +10,10 @@ export const config = Object.freeze({
         globalFrom: process.env.MAIL_FROM as string,
     },
     auth: {
-        jwt: {
-            access_token: process.env.ACCESS_TOKEN as string,
-            access_token_secret: process.env.ACCESS_TOKEN_SECRET as string,
-            refresh_token: process.env.REFRESH_TOKEN as string,
-            refresh_token_secret: process.env.REFRESH_TOKEN_SECRET as string,
-        },
+        accessTokenSecret: process.env.ACCESS_TOKEN as string,
+        accessTokenExpiresIn: process.env.ACCESS_TOKEN_SECRET as string,
+        refreshTokenSecret: process.env.REFRESH_TOKEN as string,
+        refreshTokenExpiresIn: process.env.REFRESH_TOKEN_SECRET as string,
     },
     db: {
         dbUser: process.env.DATABASE_USER as string ,
