@@ -6,19 +6,18 @@ export class SignUp {
 
     signUp = async ({input}: ControllerArgs) => {
 
-        const { email, firstName, lastName, otherName, password, telephone } =  input;
+        const { email,password } =  input;
 
-        const adminExist = await User.findOne({ where: { email } });
-        if(adminExist) throw new ConflictError("Admin with email already exists");
+        const userExists = await User.findOne({ where: { email } });
+        if(userExists) throw new ConflictError("Admin with email already exists");
         
         const hashPassword = await hashData(password);
         const data = {password: hashPassword, ...input};
 
-        const newAdmin = await User.create(data);
+        const user = await User.create(data);
 
-        const result = newAdmin.toJSON();
-
-        delete data.password;
+        const result = user.toJSON();
+        delete result.password;
 
         return {
             code: 201,
