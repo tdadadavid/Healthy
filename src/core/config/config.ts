@@ -23,4 +23,7 @@ export const config = Object.freeze({
         dbPool: process.env.DATABASE_POOL as string,
         dbName: process.env.DATABASE_NAME as string
     },
+    rateLimit: {
+        limit: process.env.WINDOW_RATE_LIMIT
+    }
 });

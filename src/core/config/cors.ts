@@ -1,8 +1,10 @@
-export const allowedOrigins: string | RegExp | (string | RegExp)[] = [
+import { CorsOptions } from "cors";
+
+const allowedOrigins: string | RegExp | (string | RegExp)[] = [
     "localhost:3000"
 ];
 
-export const allowedMethods: string[] = [
+const allowedMethods: string[] = [
     "GET",
     "POST",
     "PUT",
@@ -10,9 +12,15 @@ export const allowedMethods: string[] = [
     "PATCH",
 ];
 
-export const allowedHeaders: string[] = [
+const allowedHeaders: string[] = [
     "Content-Type",
     "Content-Length",
     "Content-Transfer-Encoding",
     "Authorization"
 ]
+
+export const corsOptions: CorsOptions = {
+    methods: allowedMethods,
+    allowedHeaders,
+    origin: allowedOrigins,
+}
