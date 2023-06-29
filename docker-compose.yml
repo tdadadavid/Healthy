@@ -1,0 +1,41 @@
+version: '3.0'
+services:
+  api:
+    build: .
+    context: Dockerfile
+    ports:
+      - "4000:4000"
+    container_name: healthy-api
+    env_file:
+      - ./.env
+    depends_on:
+      - cache
+      - database
+    links:
+      - cache
+      - database
+
+  cache:
+    image: redis:7.2-rc2-alpine
+    container_name: cache
+    ports:
+      - "6379:6379"
+    volumes:
+      - cache:/data
+
+  database:
+    image: postgres:alpine3.17
+    container_name: database
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=rootpassword
+      - POSTGRES_USER=postgres
+    volumes:
+      - db:/var/lib/postgresql/data
+
+volumes:
+  cache:
+    driver: local
+  db:
+    driver: local
