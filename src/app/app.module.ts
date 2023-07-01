@@ -1,11 +1,10 @@
 import { createServer } from "http";
 
-import {config, logger} from "../core";
+import {config} from "../core";
 import { app } from "./app.service";
+import { disPatchWithoutValues } from "./events";
 
-export const startApp = () => {
+export const startApp = async () => {
     const server = createServer(app);
-    server.listen(config.port, () => {
-        logger.info(`Server running on port ${config.port}`)
-    })
+    server.listen(config.port, () => disPatchWithoutValues("app:up"))
 }

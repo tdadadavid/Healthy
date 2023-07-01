@@ -22,3 +22,12 @@ export interface TokenUser {
     id: string;
     role: string;
 }
+
+
+export interface IEMAIL {
+  fileName: string;
+  data: Record<any, unknown>;
+  email: string;
+  subject?: string;
+  attachments?: Array<string>
+}

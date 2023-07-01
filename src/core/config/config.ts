@@ -7,7 +7,13 @@ export const config = Object.freeze({
     port: parseInt(process.env.PORT!),
     appEnvironment: process.env.NODE_ENV as string,
     mail: {
-        globalFrom: process.env.MAIL_FROM as string,
+        globalFrom: process.env.MAIL_FROM || "davidtofunmidada@gmail.com" as string,
+        smtpHost: "smtp.gmail.com",
+        smtpPort: 465,
+        smtpUsername: process.env.USER_EMAIL,
+        smtpClientId: process.env.CLIENT_ID as string,
+        smtpClientSecret: process.env.CLIENT_SECRET as string,
+        smtpRefreshToken: process.env.REFRESH_TOKEN as string,
     },
     auth: {
         accessTokenSecret: process.env.ACCESS_TOKEN as string,
@@ -25,5 +31,5 @@ export const config = Object.freeze({
     },
     rateLimit: {
         limit: process.env.WINDOW_RATE_LIMIT
-    }
+    }, 
 });
