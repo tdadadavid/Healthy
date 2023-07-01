@@ -12,7 +12,7 @@ class AppEventManager extends Event {
         this.register(eventListenerMap);
     }
 
-    public register = async (eventListenerMap: EventListenerMap): Promise<void> => {
+    private register = async (eventListenerMap: EventListenerMap): Promise<void> => {
         Object.keys(eventListenerMap).forEach((key: string) => {
             const listeners: Listener[] | Listener = eventListenerMap[key]
 
@@ -26,16 +26,18 @@ class AppEventManager extends Event {
         })
     }
 
-    public disPatchWithoutValues = async <T extends eventKeys = eventKeys>(event: T): Promise<void> =>{
+    public disPatchWithoutValues = async <T extends eventKeys = eventKeys>(
+        event: T
+    ): Promise<void> =>{
         this.emit(event);
     }
 
     public dispatch = 
     async <T extends eventKeys = eventKeys>(
         event: T, 
-        values: AppEventListnerMap[T]
+        ...values: AppEventListnerMap[T]
     ): Promise<void> => {
-        this.emit(event , ...values)
+        this.emit(event , values)
     }
 }
 
