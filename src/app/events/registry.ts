@@ -1,3 +1,4 @@
+import { sendForgotPassword } from "../../auth";
 import { logger } from "../../core";
 
 
@@ -6,5 +7,6 @@ import { logger } from "../../core";
  */
 export const register = {
   "app:up": () => logger.info("Server started successfully"),
-  "event:registeration:succesful": () => logger.info("Events listeners registered")
+  "event:registeration:succesful": () => logger.info("Events listeners registered"),
+  "auth:user:forgotpassword": sendForgotPassword.handle
 }; 

@@ -1,4 +1,4 @@
-import { Sequelize } from 'sequelize';
+import { Dialect, Sequelize } from 'sequelize';
 import { config } from './config';
 
 // Postgres implementation
@@ -13,6 +13,6 @@ export const sequelize = new Sequelize(
             max: 10
         },
         host: config.db.dbHost,
-        dialect: 'postgres',
+        dialect: 'postgres' as Dialect,
     }
 );

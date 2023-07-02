@@ -1,4 +1,5 @@
-import { ControllerArgs, generateRandStr, computeExpiryDate, UnAuthorizedError, mail } from "../../core";
+import { dispatch } from "../../app";
+import { ControllerArgs, generateRandStr, computeExpiryDate, UnAuthorizedError } from "../../core";
 import { User } from "../../users";
 
 
@@ -18,17 +19,15 @@ export class ForgotPassword<T extends ControllerArgs = ControllerArgs> {
             resetTokenExpiresIn: computeExpiryDate(1800)
         });
         await user.save();
-    
-        mail.send({
-            fileName: "../views/user.forgot.password.ejs",
+        
+        const mailOptions = {
             email: user.email,
-            subject: "Forgot password",
-            data: {
-                surname: user.lastName,
-                firstname: user.firstName,
-                link: "www.google.com?/" + token  //TODO: work on the links
-            },
-        })
+            firstName: user.firstName,
+            lastName: user.lastName,
+            token,
+            link: `localhost:3000?token=${token}`
+        }
+        dispatch("auth:user:forgotpassword", mailOptions);
     
         return {
             code: 200,
