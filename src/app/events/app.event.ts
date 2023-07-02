@@ -1,15 +1,16 @@
 import Event from "eventemitter2";
 
-
 import { EventListenerMap, Listener } from "../../core";
-import {eventKeys, AppEventListnerMap, evMap } from "./registry";
+import {register } from "./registry";
+import {eventKeys, AppEventListnerMap} from "./helper.types";
 
 
 class AppEventManager extends Event {
 
     constructor(eventListenerMap: EventListenerMap){
         super();
-        this.register(eventListenerMap);
+        this.register(eventListenerMap)
+            .then(() => this.dispatch('event:registeration:succesful'))
     }
 
     private register = async (eventListenerMap: EventListenerMap): Promise<void> => {
@@ -26,11 +27,6 @@ class AppEventManager extends Event {
         })
     }
 
-    public disPatchWithoutValues = async <T extends eventKeys = eventKeys>(
-        event: T
-    ): Promise<void> =>{
-        this.emit(event);
-    }
 
     public dispatch = 
     async <T extends eventKeys = eventKeys>(
@@ -42,5 +38,5 @@ class AppEventManager extends Event {
 }
 
 
-const { dispatch, disPatchWithoutValues } = new AppEventManager(evMap);
-export { disPatchWithoutValues, dispatch }
+const { dispatch } = new AppEventManager(register);
+export { dispatch }

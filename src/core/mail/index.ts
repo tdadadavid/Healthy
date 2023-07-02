@@ -7,7 +7,7 @@ import { IEMAIL } from "../types";
 
 class Mail {
 
-    public send = async (options:IEMAIL ): Promise<void> => {
+    public send = async (options: IEMAIL): Promise<void> => {
         try {
             // get access token
             const accessToken = await oAuth2Client.getAccessToken();
