@@ -8,6 +8,10 @@ export const sequelize = new Sequelize(
     config.db.dbPassword,
     {
         port: 5432,
+        pool: {
+            min: 2,
+            max: 10
+        },
         host: config.db.dbHost,
         dialect: 'postgres',
     }

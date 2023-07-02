@@ -3,4 +3,4 @@ import { initializeDbConnection, gracefullyShutdown } from "./core";
 
 initializeDbConnection()
     .then(startApp)
-    .catch(gracefullyShutdown)
+    .catch(gracefullyShutdown);
