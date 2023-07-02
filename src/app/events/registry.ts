@@ -7,11 +7,4 @@ import { logger } from "../../core";
 export const register = {
   "app:up": () => logger.info("Server started successfully"),
   "event:registeration:succesful": () => logger.info("Events listeners registered")
-} 
-
-
-
-
-
-
-
+}; 
