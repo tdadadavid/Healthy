@@ -31,12 +31,6 @@ jobs:
         with:
           version: "latest"
 
-      - name: Add pnpm package export globally
-        run: pnpm add --global pnpm-lock-export
-
-      - name: Generate package-lock.json file
-        run: pnpm-lock-export --dest package-lock.json
-
       - name: Install Dependencies
         run: pnpm install
 
