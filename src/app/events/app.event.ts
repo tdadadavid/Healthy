@@ -10,7 +10,7 @@ class AppEventManager extends Event {
     constructor(eventListenerMap: EventListenerMap){
         super();
         this.register(eventListenerMap)
-            .then(() => this.dispatch('event:registeration:succesful'))
+            .then(() => this.dispatch('event:registeration:succesful'));
     }
 
     private register = async (eventListenerMap: EventListenerMap): Promise<void> => {

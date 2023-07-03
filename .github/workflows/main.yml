@@ -34,5 +34,5 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
-      - name: Run tests if present
-        run: pnpm run test  --if-present
+      - name: Run tests
+        run: pnpm run test
