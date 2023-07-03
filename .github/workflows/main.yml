@@ -32,17 +32,17 @@ jobs:
         with:
           version: "latest"
 
-      - name: Install Dependencies
-        run: pnpm install
-        
       - name: Add pnpm package export globally
         run: pnpm add --global pnpm-lock-export
 
       - name: Generate package-lock.json file
         run: pnpm-lock-export --dest package-lock.json
 
+      - name: Install Dependencies
+        run: pnpm install
+
       - name: Run buil if present
         run: pnpm run build --if-present
-      
+
       - name: Run tests if present
         run: pnpm run test  --if-present
