@@ -34,6 +34,12 @@ jobs:
 
       - name: Install Dependencies
         run: pnpm install
+        
+      - name: Add pnpm package export globally
+        run: pnpm add --global pnpm-lock-export
+
+      - name: Generate package-lock.json file
+        run: pnpm-lock-export --dest package-lock.json
 
       - name: Run buil if present
         run: pnpm run build --if-present
