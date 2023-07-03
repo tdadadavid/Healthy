@@ -7,10 +7,12 @@ import { User } from "../../users";
 
 export class SignIn {
 
+    constructor(private readonly db: typeof User){}
+
     signIn = async({input}: ControllerArgs) => {
         const { email, password } = input;
 
-        const user = (await User.scope('withPassword')
+        const user = (await this.db.scope('withPassword')
             .findOne({ where: { email } }))?.toJSON();
         if (!user) throw new UnAuthorizedError('Invalid login credentials');
 

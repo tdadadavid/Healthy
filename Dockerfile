@@ -14,8 +14,14 @@ RUN npm install -g npm@latest
 # download pnpm package manager
 RUN npm install -g pnpm@latest
 
-# download dependencies
-RUN pnpm install
+# download dependencies [not devDependencies]
+RUN pnpm install --only=production
+
+# clear cache
+RUN pnpm store prune
+
+# set the environment to production for optimization.
+ENV NODE_ENV production
 
 # copy remaining files
 COPY . .

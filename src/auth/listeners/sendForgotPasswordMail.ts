@@ -1,4 +1,4 @@
-import { mail } from "../../../core";
+import { mail } from "../../core";
 
 
 class SendForgotPasswordMail {
@@ -10,7 +10,8 @@ class SendForgotPasswordMail {
         link: string,
         token: string,
     }): Promise<void> => {
-        mail.send({
+        Promise.resolve(
+            mail.send({
             fileName: "../views/user.forgot.password.ejs",
             email: options.email,
             subject: "Forgot password",
@@ -19,7 +20,8 @@ class SendForgotPasswordMail {
                 firstname: options.firstName,
                 link: options.link
             },
-        })
+            })
+        );
     }
 }
 

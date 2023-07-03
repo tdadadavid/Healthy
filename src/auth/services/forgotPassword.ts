@@ -6,10 +6,12 @@ import { User } from "../../users";
 
 export class ForgotPassword<T extends ControllerArgs = ControllerArgs> {
 
+    constructor(private readonly db: typeof User){}
+
     forgotPassword = async ({ input }: T) => {
         const { email } = input;
     
-        const user = await User.findOne({ where: { email } });
+        const user = await this.db.findOne({ where: { email } });
         if (!user) throw new UnAuthorizedError('Email not found');
     
         const token = generateRandStr(64);
@@ -17,8 +19,7 @@ export class ForgotPassword<T extends ControllerArgs = ControllerArgs> {
         user.set({
             resetToken: token,
             resetTokenExpiresIn: computeExpiryDate(1800)
-        });
-        await user.save();
+        }).save();
         
         const mailOptions = {
             email: user.email,

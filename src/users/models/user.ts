@@ -1,5 +1,5 @@
 import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model } from "sequelize";
-import { sequelize } from "../../core";
+import { compareHashedData, sequelize } from "../../core";
 import { MaritalStatus } from "../enums";
 
 
@@ -24,6 +24,12 @@ export class User extends Model<
     declare isMailSent: CreationOptional<boolean>;
     declare createdAt?: CreationOptional<Date>;
     declare updatedAt?: CreationOptional<Date>;
+
+    resetTokenHasExpired = (): boolean => {
+        return !this.resetTokenExpiresIn || this.resetTokenExpiresIn <= new Date(Date.now());
+    }
+
+    
 }
 
 User.init(
