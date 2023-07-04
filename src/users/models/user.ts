@@ -1,5 +1,5 @@
 import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model } from "sequelize";
-import { compareHashedData, sequelize } from "../../core";
+import { sequelize } from "../../core";
 import { MaritalStatus } from "../enums";
 
 
